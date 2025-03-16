@@ -55,3 +55,41 @@ plot(
 # ---- Açıklama ----
 # `par(mfrow = c(1,2))` komutu ile ekranı ikiye böldüğümüz için iki grafik aynı anda görüntülenir.
 # Sol üst köşedeki oklar sayesinde iki grafik arasında geçiş yapabilirsin.
+'''#---veri gorsellestirme 2 tekrar----
+library(tibble)
+library(dplyr)
+library(ggplot2)
+
+ucus <- tibble(
+  marka = factor(c("katar", "turk", "emirates"), levels = c("katar", "turk", "emirates")),
+  ortalama_ucus = c(23, 34, 54)  # Virgül eksikliği giderildi
+)
+
+ucus2 <- tibble(
+  marka = c(rep("katar", 75), rep("turk", 50), rep("emirates", 65))
+)
+
+ggplot(data = ucus2, aes(marka)) +#bu kisimda bir tane degişken oldugu için aes kismina x ve degerleri atamadim
+  geom_bar(colour="yellow")  # Çubuk grafiği oluştur
+
+
+ggplot(data = ucus,aes(x=marka,y=ortalama_ucus,group = 1))+#bu kisimda group senin tum degerileri bir sekil
+  geom_line(colour="yellow",size=2)#cizginin rengini burdan ayarlayabilirsin her turlu bok bu sekilde ayarlanabilir
+
+
+#anasini sikieyeim bu kodalamanin ne sikkik bir sey lena bu
+library(ggplot2)
+
+# Örnek veri seti: Öğrenci isimleri ve aldıkları notlar
+ogrenciler <- data.frame(
+  isim = c("Ali", "Veli", "Ayşe", "Fatma", "Mehmet"),
+  notlar = c(85, 90, 78, 88, 92),
+  cinsiyet = c("Erkek", "Erkek", "Kadın", "Kadın", "Erkek")  # Cinsiyet bilgisi
+)
+
+# Grafik oluşturma
+ggplot(data = ogrenciler, aes(x = isim, y = notlar, fill = cinsiyet)) +  # X ekseni isimler, Y ekseni notlar
+  geom_col(colour = "black", size = 1.2) +        # Çubuklar, siyah kenar ve kalınlık (size)
+  ggtitle("Öğrencilerin Not Dağılımı") +          # Başlık
+  xlab("Öğrenciler") +                           # X ekseninin adı
+  ylab("Notlar") +'''
