@@ -70,3 +70,35 @@ m1[1:3,1]#bu kisimda demek istenilen 1 satirdaki ilk uc degeri yazmasini daglar
       
       mbuyuk <- matrix(1:4000, ncol = 4, nrow = 1000)
       rownames(mbuyuk) <- paste("insan", 1:1000, sep = "-")
+
+
+
+'''#------matrix ornekk
+
+a<-matrix(1:16,4,4)
+diag(a)#kosegenleradeki elemanlari yazdirmaya yarar
+sum(diag(a))
+
+#sum fonk senin toplama yapmani saglar
+
+diag(c(1,1,1,1))#birim matrix
+
+#diag ile direk matric olusturabilirsin
+
+#t harfi tansporsunu alir liner cebirden hatierla(matrisi ters cevirir),
+
+t(a)
+
+det(a)#determinatini allir
+
+#solve ise senin direkt tersini alir
+
+y<-matrix(veri$write,ncol=1)#y degeri ile indirdigin kisima ekleme yapmani saglar $ işareti ile dosyaya ulasmani sagalr
+
+x<-cbind(1,veri$math,veri$science,veri$female)
+
+
+#%*% matrisler arasi carpma işlemi anlamina gelir
+
+ 
+solve(t(x)%%x)%%t(x)%*%y'''
