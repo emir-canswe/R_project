@@ -2,6 +2,93 @@
 
 #bir adi uzerinde bir girdigin degerleri bir tablos eeklindie sabna sunuyor
 
+#-----DATA.FREME  
+#susikik data freme ne oluyort lem
+#c dilindeki structlare ve pytonlardaki class dersine cok benziyor
+#sikik data frame girilen vektorleri matrix seklide yazmani sagalr
+#data freme adi uzerinde verilen degerlerei goreselleştiri
+#data freme c dilindeki struclara benzer phtondaki claslarin hemem hemen ayinis ama verdigin degeri gors
+df1<-data.frame(
+  
+  magazano=c(1:3),#magazin no senin ilk sutunun adi oluyorr ve 1 ile 3 arasindaiki sayilari sana direct olarak yazidiri
+  isimler=c("yapay zeka","amedspor","ankarasimit"),#2 sutunun adi
+  kazanc=c(30,50,90)#ucuncu sutunun adi ise kazanc
+  
+)
+#datafrem senin tablo sekliinde olsuturmani sagalr
+#magazano 1 den 3 kadar tablo olusturur
+#işlem yaparken virgul kullanmayi unntma
+#matrsin içinde sayi yazilmiş gibi
+
+
+str(df1)#bu sekilde kullanimi sana kullandigin veri tiplerini veriri,
+
+summary(df1)#bu fonksiyon ise sana sana girdgin degerkerin istatistiklerini falan soyler
+
+df2<-data.frame(
+  magazano=c(1:3),
+  tecrube=c(5,100,100),
+  personno=c(10,30,2)
+)
+merge(df1,df2)#tabikinde tablo olacagi için ikisinde degerleri birbirine işit olmasi
+
+#MARGE FONKSİYONU iki data fremi birlectiriyor tipki cbind(bu iki tane vektoru matrice cevitrıyor) fonksiyonu gibi(c bind iki tane vektoru birlestirip bir tane matrix yapiyordu)
+
+df3<-merge(df1,df2)
+
+#marge fonksiyonu iki tane data fremi birlestir
+#tipki ikia tane c
+#dolar işareti senin data.freme ulasmani saglar(tablo basligi gibi ve bunu sirali bir sekilde eklemeni saglar 
+
+df3$musteri<-c(6,100,23)#dolar isareti senin iframe eleman eklemni saglar ayruca musteri snein basligin olurken degerler sirasiyle eklenmis olacak
+
+#su dolar isareti senin df3 unun alt parametlerine ulasmasni sagalr
+
+df3$urun<-c("yazilim","et","simit")
+#bu sekil yaptigin zaman datafreme eleman eklemis oluyorrsun
+df3$kizlar<-c("ali","veli","dondali")
+df3$tecrubez<-NULL
+
+df3$maaslar<-df3$kazanc/df3$personno
+
+
+#     bu dolaar isareti senin iframe içindeki bir elemana ulasmayi saglar
+
+
+#      satir isimlendirme
+
+#----rownames
+
+
+#zaten adi uzerine row sartri demek zaten  digereini de kendin bir sekilde yaz
+
+
+rownames(df2)<-c("bir","iki","uc")#tablo seklinde olan kismin satir basindaki aciklama kismini belirtiyor
+
+
+library(dplyr)
+
+df3%>%ramove_rownames%>%column_to_rownames(var="isimler")
+
+#su kismi aba bi amk bu ne aslan data fremdeki 33 dksai
+
+
+#matris ve liste datafreme benzetiliebilr
+
+
+m<-matrix(1:9,3,3)
+print(m)
+
+df10<-as.data.frame(m)#bu sekişl yapinca matris bir data.freme benzedi
+
+number<-c(1,2,3)
+hart<-c("a","b","c")
+log<-c(TRUE,TRUE,TRUE)
+
+
+e<-list(number,harf,log) 
+
+df10<-as.data.frame(e)
 
 df1<-data.frame(
   
