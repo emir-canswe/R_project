@@ -77,6 +77,9 @@ ggplot(data = ucus,aes(x=marka,y=ortalama_ucus,group = 1))+#bu kisimda group sen
   geom_line(colour="yellow",size=2)#cizginin rengini burdan ayarlayabilirsin her turlu bok bu sekilde ayarlanabilir
 
 
+
+
+
 #anasini sikieyeim bu kodalamanin ne sikkik bir sey lena bu
 library(ggplot2)
 
@@ -92,4 +95,115 @@ ggplot(data = ogrenciler, aes(x = isim, y = notlar, fill = cinsiyet)) +  # X eks
   geom_col(colour = "black", size = 1.2) +        # Çubuklar, siyah kenar ve kalınlık (size)
   ggtitle("Öğrencilerin Not Dağılımı") +          # Başlık
   xlab("Öğrenciler") +                           # X ekseninin adı
-  ylab("Notlar") +'''
+  ylab("Notlar") +
+
+
+dev.off()  # Grafikleri sıfırlar
+
+library(ggplot2)
+
+# Veri seti
+fruitname <- data.frame(
+  name = c("banana", "tomato", "portugal"),
+  much = c(12, 21, 23)
+)
+
+# Grafik oluşturma
+ggplot(data = fruitname, aes(x = name, y = much, fill = name)) +
+  geom_col(colour = "black") +  # Çubuklar ve kenarları siyah
+  ggtitle("Meyve Miktarları") +  # Başlık
+  xlab("Meyve Türleri") +        # X ekseni
+  ylab("Miktar")                 # Y ekseni
+
+
+
+
+
+
+
+
+#------VERİ GORSELLESTİRE----
+
+library(tibble)
+library(dplyr)
+library(ggplot2)
+
+ucus <- tibble(
+  marka = factor(c("a", "b", "c"), levels = c("a", "b", "c")),
+  ortalama_ocus = c(123, 234, 345)  # Değişken adı burada "ortalama_ocus"
+)
+
+
+ggplot(data=ucus,aes(x=marka,y=ortalama_ocus,fill = marka))+  #simdi data kismina hanig degirin grafigini cizmek istiyorsan orayi ciz
+  geom_col(colour="blue")+#aes denilen it ise senin x ve y eksenlerine hangi degeri atmak istiyorsan onlari at
+  guides(fill=FALSE)+#fill ocu ise renkleri ayarlar gibi bir sey
+  xlab("sirketler")+ylab("ortalama ucus sureleri")+#eksen ve sutun isimlerini bu sekilde degiştireblirsin
+  ggtitle("benim adim emircan can")#baslik eklemeye yarayan edevat
+
+
+
+
+
+
+
+
+
+
+#-----VERİ GÖRSELLEŞTİRME-----
+
+library(tibble)      # Veri çerçevesi oluşturmak için kullanılır, özellikle düzenli veri oluşturmak için ideal
+library(dplyr)       # Veri işleme kütüphanesi; veri manipülasyon işlemleri için fonksiyonlar sağlar
+library(ggplot2)     # Veri görselleştirme kütüphanesi, grafikler ve çizimler oluşturmak için kullanılır
+
+# Veri seti oluşturuluyor
+ucus <- tibble(
+  marka = factor(c("A", "B", "C"), levels = c("A", "B", "C")),  # Marka isimlerini faktör olarak tanımlar
+  sonuc = c(232, 343, 355)                                     # Her markaya karşılık gelen uçuş sürelerini içerir
+)
+#tibleden yapmana gerek yok direct data.fremeden yapabilirsin3
+# Grafik oluşturuluyor
+ggplot(data = ucus, aes(x = marka, y = sonuc, fill = marka)) +  # 'ucus' veri setini kullanarak, 'marka' x eksenine, 'sonuc' y eksenine ayrice bu fill istedigin degişkenin farkli bir renkle gostermeni saglar
+  geom_bar(color = "blue", stat = "identity") +               # Bar grafiği oluşturur; çubuk kenarları mavi olur, stat="identity" ile y ekseni değerleri direk kullanılır
+  guides(fill = FALSE) +                                       # Grafik üzerindeki renkli göstergeyi kaldırır
+  xlab("Şirketler") +                                         # X eksenini "Şirketler" olarak adlandırır
+  ylab("Ortalama Uçuş Süreleri") +                            # Y eksenini "Ortalama Uçuş Süreleri" olarak adlandırır
+  ggtitle("Uçuş Değerleri")                               # Grafiğe başlık ekler
+
+
+ucus2<-tibble(
+  marka=c(rep("A",75),rep("B",50),rep("c",65))#bu sekilde yaoince senin 75 a 59 tane b 65 tane c yazmani saglar 
+)#bu sekilde bir veri cercevisi olustrursun
+
+
+ggplot(ucus,aes(x=marka,y=sonuc,group = 1))+#nu aes senin elemanlarinin konumunu bellirliyor
+  geom_line(stat = "identity")+#eger x ve eksenlerinin ikiisni de giriyorsan stat=identity degerini de girmen gerekecek
+  geom_point(color="yellow",size=3)
+#sadece bu sekilde bile senin bir tablo olsutrumana yeter
+
+##  bak kral geom_line sana mat fonk gibi verirken geom_bar ise sana renkli bir sekilde sunuyor
+#line zateen cizgi demk ordan aklinda bulunsun
+#geom_point yaptiginda ise sana nokta sseklinde sunuyor(point zaten nokta demek)
+#kendi kafana gore de degisler yappabilirsin
+
+
+ucus3 <- tibble(
+  marka = factor(rep(c("a", "b", "c"), each = 100)), #bu sekilde yapmak sana herbirinden 100 tane yazmani saglar
+  
+  fly = c(rnorm(100, mean = 50), rnorm(100, mean = 51), rnorm(100, mean = 49))#bu sekilde de sana her bir deger senin ortalamasi 50 den 100 tane 51 den 100 tene 49 dan da bir tane yazmani daglar
+)
+
+# tablo olusturma 
+
+ggplot(ucus3,aes(fly))+#1 prametre hangi deger atanacak aes kismina ise  x ve y eksenlarine hangi parametre gelecegini belirliyorsun
+  geom_histogram(color="black",fill="black")#veri gorsellestirme işini kisacasi geom yapiyor ve 
+#bu yaptigin sey fly kismindakilerin hangi degerlerin hangi saatelr arasinda yogunlastigini belirtir
+
+
+ggplot(ucus3,aes(fly,fill=marka))+   #su sikik fill de istedigin degiskeni farkli sekilde yazmani saglar yani ben burda dedim ki markan degişkeni içrisindeki tum degişkenleri farkli renklerde yazmani saglar
+  geom_density(position = "identity")#burda indertity her bir degirn renginin farkli gostermeye yarar
+
+#şu identity denilen kepaze verileri gostermeye yariyro beligin bi degeri bulunmamakta
+
+
+#amk koydugum hocasi data.frema kullanacak
+'''
